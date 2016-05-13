@@ -36,8 +36,4 @@
 
 // Eventoss
 	formulario.addEventListener("submit", validar);
-
-var Todo = varlidarNombre;
-	document.write(Todo);
-
 }())
