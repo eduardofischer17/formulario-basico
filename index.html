@@ -9,16 +9,19 @@
 	
 	<form action="index.html" name="formulario" id="formulario" class = "form" method="get">
 
-		<input type="text" name="nombre" id="nombre" placeholder="Agrega tu nombre">
+		<input type="text" name="nombre" id="nombre" placeholder="Agrega tu nombre" class="fomInput formInput-text">
 		<br><br>
-		<input type="radio" name="Radio1" id="radiohombre" value="Hombre"> Hombre
-		<input type="radio" name="Radio2" id="radiomujer" value="Mujer"> Mujer
+		<input type="radio" name="Radio1" id="radiohombre" value="Hombre" class="fomInput formInput-radio"> Hombre
+		<input type="radio" name="Radio2" id="radiomujer" value="Mujer" class="fomInput formInput-radio"> Mujer
 		<br><br>
-		<input type="checkbox" name="Terminoscondiciones" id="terminos"> Terminos y Condiciones
+		<input type="checkbox" name="Terminoscondiciones" id="terminos" class="fomInput formInput-text"> Terminos y Condiciones
 		<br><br>
 		<input type="submit" class = "Boton" id="btn" value="Enviar">
 
 	</form>
+	<div id='showName' class="showDiv"></div>
+	<div id='showSex' class="showDiv"></div>
+	<div id='showTermsAndConditions' class="showDiv">/div>
 
 	<script src="jquery-1.12.3.min.js" languaje ="javascript" type= "text/javascript"></script>
 	<script src="main.js" languaje ="javascript" type= "text/javascript"></script>

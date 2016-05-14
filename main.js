@@ -1,6 +1,5 @@
 (function () {
 // Variables
-
 	var formulario = document.getElementById("formulario");
 	var elementos = formulario.elements;
 	var boton = document.getElementById("btn");
