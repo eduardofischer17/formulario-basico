@@ -4,35 +4,62 @@
 	var formulario = document.getElementById("formulario");
 	var elementos = formulario.elements;
 	var boton = document.getElementById("btn");
-
+ 
 // Funciones
-	var validarNombre = function (e) {
-		if (formulario.nombre.value == 0) {
+	var validarNombre = function (configuration) {
+            var nombreElement = new configuration.domElementToValidate(formulario.nombre);
+            var event = configuration.event;
+            var nombreElementVal = nombreElement.getElementValue();
+		if (nombreElementVal === '') {
 			alert("El campo nombre esta vacio");
-			e.preventDefault();
-		} 
-	};
+			event.preventDefault();
+		}
+	}
 
-	var validarSexo = function (e) {
-		if (formulario.Radio1.checked == true || formulario.Radio2.checked == true ) {
+	var validarSexo = function (configuration) {
+            var sexoElement1 = new configuration.domElementToValidate(formulario.Radio1);
+            var sexoElement2 = new configuration.domElementToValidate(formulario.Radio2);
+            var event = configuration.event;
+		if (sexoElement1.getElementCheckedProperty() == true || sexoElement2.getElementCheckedProperty() == true ) {
 		} else {
 			alert("Debe seleccionar el sexo");
-			e.preventDefault();
+			event.preventDefault();
 		}
 	};
 
-	var validarTerminos = function (e) {
-		if (formulario.Terminoscondiciones.checked == false) {
+	var validarTerminos = function (configuration) {
+          var terminosYCondicionesElement = new configuration.domElementToValidate(formulario.Terminoscondiciones);
+          var event = configuration.event;
+		if (terminosYCondicionesElement.getElementCheckedProperty() == false) {
 			alert("Debe aceptar los terminos y condiciones");
-			e.preventDefault();
+			event.preventDefault();
 		} 
 	};
 
 	var validar = function (e) {
-		validarNombre(e);
-		validarSexo(e);
-		validarTerminos(e);
-};
+          var domElementToValidate = function (domElement) {
+            this.elementToValidate = domElement;
+            this.$elementToValidate = $(this.elementToValidate);
+            this.elementToValidateValue = this.$elementToValidate.val();
+          };
+
+          domElementToValidate.prototype.getElementValue = function() {
+            return this.elementToValidateValue;
+          };
+
+          domElementToValidate.prototype.getElementCheckedProperty = function() {
+            return this.elementToValidate.checked;
+          };
+
+          var configurationForValidation = {
+            domElementToValidate: domElementToValidate,
+            event: e,
+          };
+
+          validarNombre(configurationForValidation);
+          validarSexo(configurationForValidation);
+          validarTerminos(configurationForValidation);
+        };
 
 // Eventoss
 	formulario.addEventListener("submit", validar);
